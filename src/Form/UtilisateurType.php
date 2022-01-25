@@ -19,7 +19,13 @@ class UtilisateurType extends AbstractType
         $builder
         ->add('pseudo', TextType::class, ['attr'=>['class' => 'form-control']])
         ->add('email', EmailType::class, ['attr'=>['class' => 'form-control']])
-        ->add('mdp', PasswordType::class, ['attr'=>['class' => 'form-control']])
+        ->add('mdp', RepeatedType::class, [
+            'type' => PasswordType::class,
+            'invalid_message' => 'The password fields must match.',
+            'options' => ['attr' => ['class' => 'password-field']],
+            'required' => true,
+            'first_options'  => ['label' => 'Password'],
+            'second_options' => ['label' => 'Repeat Password'],])
             #->add('dateInscription')
             #->add('ipInscription')
             #->add('tracker')
@@ -28,13 +34,7 @@ class UtilisateurType extends AbstractType
         ;
     }
 
-/*     ->add('mdp', RepeatedType::class, [
-        'type' => PasswordType::class,
-        'invalid_message' => 'The password fields must match.',
-        'options' => ['attr' => ['class' => 'password-field']],
-        'required' => true,
-        'first_options'  => ['label' => 'Password'],
-        'second_options' => ['label' => 'Repeat Password'],]) */
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {
