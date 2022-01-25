@@ -73,6 +73,11 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
      */
     private $roleUtilisateur;
 
+    /**
+     * @ORM\Column(name="verification", type="boolean", nullable=false)
+     */
+    private $isVerified = false;
+
 
     public function getIdUtilisateur(): ?int
     {
@@ -163,13 +168,10 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
         return $this;
     }
 
-
-
-
     public function getRoles(): array
     {
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles=[$this->roleUtilisateur];
 
         return array_unique($roles);
     }
@@ -211,6 +213,18 @@ public function getPassword(): string
     public function setPassword(string $password): self
     {
         $this->mdp = $password;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }
