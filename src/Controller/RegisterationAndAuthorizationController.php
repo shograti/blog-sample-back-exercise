@@ -16,7 +16,7 @@ use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class RegisterationController extends AbstractController {
+class RegisterationAndAuthorizationController extends AbstractController {
 
     private $verifyEmailHelper;
     private $mailer;
