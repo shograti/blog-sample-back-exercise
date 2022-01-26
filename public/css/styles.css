@@ -1,0 +1,40 @@
+*{
+    padding: 0!important;
+    margin:0!important;;
+}
+:root {
+    --primary-color:#ffb7ff;
+    --secondary-color: #247BA0;
+    --secondary-light-color:#87C9EE;
+    --ternary-color:#d9ff00;
+    --quaternary-color: #ff0000;
+    --grey-text:#484848;
+}
+
+.navbar-top {
+    background-color:var(--primary-color) ;
+    font-family: 'Libre Franklin', sans-serif;
+    text-transform: uppercase;
+   
+}
+
+.navbar-top h3{
+    
+}
+
+.main-content{
+    display:grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.sidebar{
+    background-color:var(--secondary-color)
+}
+
+.article-list{
+    background-color: var(--ternary-color);
+}
+
+.footer{
+    background-color:var(--quaternary-color) ;
+}

@@ -6,10 +6,11 @@ use DateTime;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use Cocur\Slugify\Slugify;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,10 +18,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class DashboardController extends AbstractController
 {
     #[Route('/dashboard', name: 'dashboard')]
-    public function index(): Response
+    public function index(ArticleRepository $repo_article): Response
     {
+        $articles = $repo_article->findAll();
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
+            'articles' => $articles
         ]);
     }
 

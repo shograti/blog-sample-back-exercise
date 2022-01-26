@@ -29,7 +29,7 @@ class RegisterationAndAuthorizationController extends AbstractController {
 
     #[Route('/auth/register', name: 'register')]
 
-        public function creerUtilisateur(Request $request,EntityManagerInterface $manager,UserPasswordHasherInterface $passwordHasher): Response
+        public function creerUtilisateur(Request $request,EntityManagerInterface $manager,UserPasswordHasherInterface $passwordHasher, UtilisateurRepository $repo_utilisateur): Response
         {
             $utilisateur = new Utilisateur();
 
@@ -50,7 +50,10 @@ class RegisterationAndAuthorizationController extends AbstractController {
                 $utilisateur->setRoleUser('ROLE_USER');
 
                 $manager->persist($utilisateur);
-                $manager->flush();
+                if($repo_utilisateur->findOneBy(array("email" => $utilisateur->getEmail())) == NULL)
+                    $manager->flush();
+                else
+                    return $this->render("/blog/error.twig");
 
                 $signatureComponents = $this->verifyEmailHelper->generateSignature(
                     'registration_confirmation_route',
@@ -114,6 +117,6 @@ class RegisterationAndAuthorizationController extends AbstractController {
             
             $user->getRoles();
 
-            return $this->redirectToRoute('creer_article');
+            return $this->redirectToRoute('login');
         }
 }

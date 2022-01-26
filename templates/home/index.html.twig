@@ -1,23 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
 
-<h1>Articles</h1>
-<ul>
-{% for article in articles %}
-        <h2>{{article.titre}}</h2>
-        <li>{{ article.contenu }}</li>
+<div class="row">
+<div class="col-12">
+<nav class="navbar-top d-flex justify-content-between p-5" >
+<a href="/"><h1>Mon Super Blog</h1></a>
+<div class="d-flex justify-content-around w-25 align-items-center me-4">
+<a href="dashboard"><h3 class="me-4">Dashboard</h3></a>
+<a href="auth/login"><h3 class="me-4">Login</h3></a>
+<a href="auth/register"><h3 class="me-4">Register</h3></a>
+</div>
+</nav>
+</div>
+</div>
+
+<div class="main-content">
+
+
+<div class="d-flex flex-column article-list">
+
+    {% for article in articles %}
+        <div class="col-6">
+            <a href='blog/{{article.idArticle}}+{{article.slug}}'>
+            <h2>{{article.titre}}</h2>
+            </a>
+            <p class="text-justify text-break">{{ article.contenu }}</p>
+        </div>
     {% endfor %}
-</ul>
 
-<h1>Utilisateurs</h1>
+</div>
 
-{% for utilisateur in utilisateurs %}
-
-        <li>{{ utilisateur.pseudo }}</li>
+<div class="sidebar d-flex flex-column">
+    {% for categorie in categories %}
+            <h4>{{categorie.libelleCategorie}}</h4>
     {% endfor %}
+
+</div>
+
+</div>
+<footer class="footer">
+Coucou
+</footer>
+       
+
+    
+
+  
+
+
+
+
+
+
 
 
 {% endblock %}
