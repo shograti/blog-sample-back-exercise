@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArticleType extends AbstractType
 {
@@ -16,7 +17,8 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('contenu')
+            ->add('contenu', TextareaType::class,['attr' => ['rows' => 15,]])
+                
             ->add('img')
             ->add('idCategorie', EntityType::class,['class'=>Categorie::class, 'choice_label'=>'libelle_categorie', 'multiple' => true, 'expanded'=>true])
             //->add('slug')

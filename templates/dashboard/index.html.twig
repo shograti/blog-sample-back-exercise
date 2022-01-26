@@ -9,6 +9,9 @@
         <div class="col-6">
             <h2>{{article.titre}}</h2>
             <a href='blog/{{article.idArticle}}+{{article.slug}}'>Voir l'article</button>
+            {% if user == article.idUtilisateur %}
+                <a href="dashboard/modifier-article={{article.idArticle}}+{{article.slug}}"><button class="btn-primary">Modifier l'article</button></a>
+            {% endif %}
             </a>
         </div>
     {% endfor %}

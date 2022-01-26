@@ -15,9 +15,11 @@
 </div>
 <div class="text-center">
 {{form_row(form.save)}}
-</div>
+
 {{form_end(form)}}
 
-</div>
+<a href="/dashboard/supprimer-article={{article.idArticle}}+{{article.slug}}'"><button class="btn btn-danger">Supprimer l'article</button></a>
 
+</div>
+</div>
 {% endblock %}

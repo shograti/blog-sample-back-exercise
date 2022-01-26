@@ -24,9 +24,11 @@
 
     {% for article in articles %}
         <div class="col-6">
+        
             <a href='blog/{{article.idArticle}}+{{article.slug}}'>
             <h2>{{article.titre}}</h2>
             </a>
+            <img src="{{article.img}}" class="img-fluid">
             <p class="text-justify text-break">{{ article.contenu }}</p>
         </div>
     {% endfor %}
